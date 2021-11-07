@@ -2,10 +2,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { asyncData } from 'async-observable-helpers';
 
-import { PokemonsComponent } from './pokemons.component';
+import { AppComponent } from './app.component';
 import { PokemonsService } from './pokemons.service';
 
-describe('PokemonsComponent', () => {
+describe('AppComponent', () => {
   let allPokemonsSpy: any;
   let testPokemons = {
     results: [{
@@ -29,13 +29,13 @@ describe('PokemonsComponent', () => {
           }
         ],
         imports: [HttpClientModule],
-        declarations: [PokemonsComponent],
+        declarations: [AppComponent],
       })
       .compileComponents();
   });
 
   it('should render pokemons list', fakeAsync(() => {
-    const fixture = TestBed.createComponent(PokemonsComponent);
+    const fixture = TestBed.createComponent(AppComponent);
 
     fixture.detectChanges();
     flush();
