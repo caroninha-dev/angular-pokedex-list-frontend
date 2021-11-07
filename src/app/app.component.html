@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<ul>
+    <li class="pokemon" *ngFor="let pokemon of pokemons">
+      <a target="_blank" href="{{ pokemon.url }}">
+        {{ pokemon.name }}
+      </a>
+    </li>
+  </ul>
