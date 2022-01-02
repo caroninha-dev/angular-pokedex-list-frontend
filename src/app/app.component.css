@@ -2,8 +2,21 @@ ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    padding: 0;
+}
+
+ul li {
+    width: 100%;
+}
+
+ul li:nth-child(2n) {
+    background-color: rgba(0,0,0,.1);
 }
 
 ul li a {
+    width: 100%;
+    text-transform: capitalize;
+    text-decoration: none;
+    display: inline-block;
     padding: 10px 5px;
 }
