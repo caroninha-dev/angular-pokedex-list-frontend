@@ -1,11 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
-import { fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { fakeAsync, flush, TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { asyncData } from 'async-observable-helpers';
 
 import { AppComponent } from './app.component';
 import { PokemonsService } from './pokemons.service';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
   let allPokemonsSpy: any;
   let testPokemons = {
     results: [{
@@ -32,16 +35,22 @@ describe('AppComponent', () => {
         declarations: [AppComponent],
       })
       .compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
   });
 
-  it('should render pokemons list', fakeAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-
+  it('should render pokemons list with <li> as item list', fakeAsync(() => {
     fixture.detectChanges();
     flush();
     fixture.detectChanges();
 
-    const $pokemon = fixture.nativeElement.querySelector('li');
-    expect($pokemon.textContent).toContain('Pikachu');
+    const appDe: DebugElement = fixture.debugElement;
+    const listItemDe = appDe.query(By.css('li'));
+
+    expect(listItemDe).not.toBeNull();
+
+    const $element: HTMLElement = listItemDe.nativeElement;
+
+    expect($element.textContent).toContain('Pikachu');
   }));
 });
